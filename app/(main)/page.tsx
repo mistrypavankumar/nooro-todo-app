@@ -40,10 +40,12 @@ export default function Home() {
     <>
       <div className="w-[min(90%,736px)] mx-auto mt-4 flex flex-col gap-5">
         <div className="flex items-center justify-between border-b border-light-gray pb-6">
-          <TaskStatus title="Tasks" count={allTasks.length} />
+          <TaskStatus title="Tasks" count={allTasks.length.toString()} />
           <TaskStatus
             title="Completed"
-            count={allTasks.filter((task) => task.completed).length}
+            count={`${allTasks.filter((task) => task.completed).length} of ${
+              allTasks.length
+            }`}
           />
         </div>
         {allTasks.length > 0 ? (
@@ -73,13 +75,17 @@ export default function Home() {
   );
 }
 
-const TaskStatus = ({ title, count }: { title: string; count: number }) => {
+const TaskStatus = ({ title, count }: { title: string; count: string }) => {
   const titleColor = title === "Tasks" ? "text-secondary" : "text-purple";
 
   return (
     <div className="flex items-center gap-3">
       <h2 className={titleColor}>{title}</h2>
-      <p className="w-7 h-5 bg-light-gray flex items-center justify-center rounded-full">
+      <p
+        className={`${
+          count.length > 2 ? "w-full px-2" : "w-7"
+        } h-5 bg-light-gray flex items-center justify-center rounded-full`}
+      >
         {count}
       </p>
     </div>
