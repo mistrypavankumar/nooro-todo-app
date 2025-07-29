@@ -2,15 +2,14 @@
 
 import axios from "axios";
 
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export const createTask = async (taskData: {
   title: string;
   color: string;
 }) => {
   try {
-    const response = await axios.post(
-      `${process.env.BASE_URL}/tasks`,
-      taskData
-    );
+    const response = await axios.post(`${BASE_URL}/tasks`, taskData);
 
     if (!response.data) {
       throw new Error("Failed to create task");
@@ -24,7 +23,7 @@ export const createTask = async (taskData: {
 
 export const getAllTasks = async () => {
   try {
-    const response = await axios.get(`${process.env.BASE_URL}/tasks`);
+    const response = await axios.get(`${BASE_URL}/tasks`);
 
     if (!response.data) {
       throw new Error("Failed to fetch tasks");
@@ -38,7 +37,7 @@ export const getAllTasks = async () => {
 
 export const getTaskById = async (taskId: string) => {
   try {
-    const response = await axios.get(`${process.env.BASE_URL}/tasks/${taskId}`);
+    const response = await axios.get(`${BASE_URL}/tasks/${taskId}`);
 
     if (!response.data) {
       throw new Error("Failed to fetch task");
@@ -59,10 +58,7 @@ export const updateTask = async (
   }
 ) => {
   try {
-    const response = await axios.put(
-      `${process.env.BASE_URL}/tasks/${taskId}`,
-      taskData
-    );
+    const response = await axios.put(`${BASE_URL}/tasks/${taskId}`, taskData);
 
     if (!response.data) {
       throw new Error("Failed to update task");
@@ -77,9 +73,7 @@ export const updateTask = async (
 
 export const deleteTask = async (taskId: string) => {
   try {
-    const response = await axios.delete(
-      `${process.env.BASE_URL}/tasks/${taskId}`
-    );
+    const response = await axios.delete(`${BASE_URL}/tasks/${taskId}`);
 
     if (response.status !== 204) {
       throw new Error("Failed to delete task");
