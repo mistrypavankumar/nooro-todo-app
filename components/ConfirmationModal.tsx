@@ -42,25 +42,32 @@ const ConfirmationModal = ({
       {isOpen && (
         <div className="absolute inset-0 bg-primary/20 backdrop-blur-[2px] z-50">
           <div className="flex items-center justify-center h-full">
-            <div className="bg-white p-4 rounded-md w-[min(90%,500px)]">
-              <h2 className="text-xl font-semibold text-primary">
+            <div className="bg-primary p-4 rounded-md w-[min(90%,500px)] border border-light-gray/70">
+              <h2 className="text-xl font-semibold text-white/70">
                 Delete Task
               </h2>
-              <p className="text-primary/70">
-                Are you sure you want to delete this task?
+              <p className="text-white/50 mt-5">
+                This task will be permanently deleted and cannot be recovered.
+                Please confirm to proceed.
               </p>
-              <div className="flex flex-col justify-end mt-4">
+              <p className="text-red-400 bg-red-900/50 p-2 rounded-md mt-7">
+                Warning: This action is not reversible. Please be certain.
+              </p>
+              <div className="flex flex-col justify-end mt-6">
+                <label htmlFor="delete-confirmation" className="text-white/70">
+                  To verify, type '<span className="font-semibold">DELETE</span>
+                  ' below:
+                </label>
                 <input
                   type="text"
-                  placeholder="Type 'DELETE' to confirm"
                   value={deleteConfirmation}
                   onChange={(e) => setDeleteConfirmation(e.target.value)}
-                  className="border-2 border-gray-300 p-2 rounded-md text-black outline-none focus:border-red-500"
+                  className="border border-light-gray/30 bg-light-gray/20 p-2 mt-3 rounded-md text-white/50 outline-none focus:border-light-gray"
                 />
-                <div className="flex justify-end mt-4">
+                <div className="flex justify-between mt-4">
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="bg-gray-300 text-black px-4 py-2 rounded-md ml-2 cursor-pointer"
+                    className="bg-light-gray/20 border border-light-gray/30 hover:bg-light-gray/50 transition-colors duration-300 text-white/50 px-4 py-2 rounded-md ml-2 cursor-pointer"
                   >
                     Cancel
                   </button>
