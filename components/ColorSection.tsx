@@ -28,7 +28,9 @@ const ColorSection = ({
             <div
               onClick={() => setSelectedColor(color.hexCode)}
               className={`w-[35px] md:w-[52px] h-[35px] md:h-[52px] rounded-full cursor-pointer ${
-                selectedColor === color.hexCode ? "opacity-100" : "opacity-50"
+                selectedColor === color.hexCode
+                  ? "opacity-100 border-2 border-foreground"
+                  : "opacity-50"
               } hover:opacity-100 transition-opacity duration-200`}
               style={{
                 backgroundColor: color.hexCode,

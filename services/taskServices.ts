@@ -35,3 +35,43 @@ export const getAllTasks = async () => {
     throw error;
   }
 };
+
+export const updateTask = async (
+  taskId: string,
+  taskData: {
+    title?: string;
+    color?: string;
+    completed?: boolean;
+  }
+) => {
+  try {
+    const response = await axios.put(
+      `${process.env.BASE_URL}/tasks/${taskId}`,
+      taskData
+    );
+
+    if (!response.data) {
+      throw new Error("Failed to update task");
+    }
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteTask = async (taskId: string) => {
+  try {
+    const response = await axios.delete(
+      `${process.env.BASE_URL}/tasks/${taskId}`
+    );
+
+    if (response.status !== 204) {
+      throw new Error("Failed to delete task");
+    }
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
