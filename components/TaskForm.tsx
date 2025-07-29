@@ -8,10 +8,11 @@ import ColorSection from "./ColorSection";
 import CustomButton from "./CustomButton";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { TaskProps } from "@/lib/constants";
-import { createTask } from "@/services/taskServices";
+import { createTask, updateTask } from "@/services/taskServices";
 import { showErrorMessage } from "@/lib/utils";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { FaCheck } from "react-icons/fa";
 
 const TaskForm = ({
   type,
@@ -47,7 +48,17 @@ const TaskForm = ({
       }
     } else if (type === "edit" && initialData) {
       try {
-        console.log("Task Updated:", { title, color: selectedColor });
+        const updatedTask = await updateTask(initialData.id as string, {
+          title,
+          color: selectedColor,
+        });
+
+        if (updatedTask) {
+          router.replace("/");
+          setTitle("");
+          setSelectedColor("");
+        }
+
         toast.success("Task updated successfully!");
       } catch (error) {
         showErrorMessage(error as Error);
@@ -75,8 +86,8 @@ const TaskForm = ({
 
           <div className="mt-7">
             <CustomButton
-              label="Add Task"
-              Icon={IoAddCircleOutline}
+              label={type === "create" ? "Create Task" : "Save"}
+              Icon={type === "create" ? IoAddCircleOutline : FaCheck}
               type="submit"
             />
           </div>

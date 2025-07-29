@@ -36,6 +36,20 @@ export const getAllTasks = async () => {
   }
 };
 
+export const getTaskById = async (taskId: string) => {
+  try {
+    const response = await axios.get(`${process.env.BASE_URL}/tasks/${taskId}`);
+
+    if (!response.data) {
+      throw new Error("Failed to fetch task");
+    }
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const updateTask = async (
   taskId: string,
   taskData: {

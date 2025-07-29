@@ -23,13 +23,13 @@ const CustomButton = ({
     <>
       {href ? (
         <Link href={href} className={buttonStyle}>
-          <span className="text-foreground text-[20px]">{label}</span>
-          <Icon className="text-foreground text-2xl" />
+          <span className="text-foreground text-[16px]">{label}</span>
+          <Icon className="text-foreground text-[20px]" />
         </Link>
       ) : (
         <button onClick={onClick} className={buttonStyle}>
-          <span className="text-foreground text-[20px]">{label}</span>
-          <Icon className="text-foreground text-2xl" />
+          <span className="text-foreground text-[16px]">{label}</span>
+          <Icon className="text-foreground text-[20px]" />
         </button>
       )}
     </>
