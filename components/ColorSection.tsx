@@ -26,7 +26,13 @@ const ColorSection = ({
         {colors.map((color) => (
           <div key={color.id}>
             <div
-              onClick={() => setSelectedColor(color.hexCode)}
+              onClick={() => {
+                if (selectedColor === color.hexCode) {
+                  setSelectedColor("");
+                } else {
+                  setSelectedColor(color.hexCode);
+                }
+              }}
               className={`w-[35px] md:w-[52px] h-[35px] md:h-[52px] rounded-full cursor-pointer ${
                 selectedColor === color.hexCode
                   ? "opacity-100 border-2 border-foreground"
