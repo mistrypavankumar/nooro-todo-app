@@ -33,6 +33,11 @@ const TaskForm = ({
       return;
     }
 
+    if (title.length > 100) {
+      toast.error("Title cannot exceed 100 characters");
+      return;
+    }
+
     if (type === "create") {
       try {
         const newTask = await createTask({ title, color: selectedColor });
@@ -73,12 +78,23 @@ const TaskForm = ({
       </Link>
       <div>
         <form onSubmit={handleSubmit}>
-          <InputField
-            title="Title"
-            placeholder="Ex. Brush your teeth"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <div>
+            <InputField
+              title="Title"
+              placeholder="Ex. Brush your teeth"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <p
+              className={`text-sm mt-1 w-fit ml-auto transition-all duration-300 ${
+                title.length > 100
+                  ? "text-red-500 font-semibold"
+                  : "text-secondary"
+              }`}
+            >
+              {title.length}/100
+            </p>
+          </div>
           <ColorSection
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}

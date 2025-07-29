@@ -1,5 +1,6 @@
 "use client";
 
+import Loader from "@/components/Loader/Loader";
 import TaskCard from "@/components/TaskCard";
 import { TaskProps } from "@/lib/constants";
 import { showErrorMessage } from "@/lib/utils";
@@ -13,6 +14,8 @@ export default function Home() {
   const [refreshTasks, setRefreshTasks] = useState<number>(0);
 
   useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
     const fetchTasks = async () => {
       try {
         const tasks = await getAllTasks();
@@ -20,12 +23,18 @@ export default function Home() {
       } catch (err) {
         showErrorMessage(err as Error);
       } finally {
-        setLoading(false);
+        timeout = setTimeout(() => {
+          setLoading(false);
+        }, 500);
       }
     };
 
     fetchTasks();
   }, [loading || refreshTasks]);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>

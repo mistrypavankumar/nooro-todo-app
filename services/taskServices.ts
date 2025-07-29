@@ -70,6 +70,7 @@ export const updateTask = async (
 
     return response.data;
   } catch (error) {
+    console.error("Error updating task:", error);
     throw error;
   }
 };
