@@ -89,6 +89,9 @@ nooro-todo-app/
 
 👉 The backend source code is available here: [Nooro Todo App Backend](https://github.com/mistrypavankumar/nooro-todo-app-backend)
 
+## 📺 Tutorial
+[![Watch the video](https://img.youtube.com/vi/9s4axlOQw2o/maxresdefault.jpg)](https://youtu.be/9s4axlOQw2o?si=-P4g4yoDKULAEvmN)
+
 ## 🙋‍♂️ Author
 
 **Pavan Kumar Mistry**
