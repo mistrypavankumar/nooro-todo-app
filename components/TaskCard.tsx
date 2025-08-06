@@ -2,11 +2,10 @@
 
 import { TaskProps } from "@/lib/constants";
 import { showErrorMessage } from "@/lib/utils";
-import { deleteTask, updateTask } from "@/services/taskServices";
+import { updateTask } from "@/services/taskServices";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { FaCheck } from "react-icons/fa";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import ConfirmationModal from "./ConfirmationModal";
 import Link from "next/link";
 
